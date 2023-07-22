@@ -1,0 +1,26 @@
+<h2> Adicionar restaurante </h2>
+<form action="#" method="post">
+  <div class="mb-3">
+    <label for="id_nome" class=""> Nome </label>
+    <input type="text" class="form-control" id="id_nome" name="nome" placeholder="" required>
+  </div>
+  <div class="mb-3">
+    <label for="id_endereco" class=""> Endereço </label>
+    <input type="text" class="form-control" id="id_endereco" name="endereco" placeholder="" required>
+  </div>
+  <button class="btn btn-dark" type="submit"> Adicionar </button>
+</form>
+<?php
+  if (isset($_POST['nome']) && isset($_POST['endereco']) && !empty($_POST['nome']) && !empty($_POST['endereco'])){
+    /*echo $_POST['nome'];
+    echo $_POST['endereco'];*/
+    //const TABELA = 'tb_restaurante';
+
+    $query = "INSERT INTO tb_restaurantes (nome, endereco) VALUES ('{$_POST['nome']}', '{$_POST['endereco']}')";
+
+    $con = Conexao::open();
+
+    mysqli_query($con, $query);
+
+  }
+?>

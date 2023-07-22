@@ -1,0 +1,67 @@
+<h1>Lista de Restaurantes</h1>
+
+<nav class="mb-3">
+    <a class="btn btn-dark" href="/restaurantes/adicionar" role="button"> + Add restaurante </a>
+</nav>
+
+<?php
+    /*$restaurantes = [
+        [
+            'nome' => 'Ordones',
+            'endereco' => 'Rua Azevedo Bolão 123',
+        ],
+        [
+            'nome' => 'Carneiro do Tercio',
+            'endereco' => 'Rua Fiúza de Pontes 456',
+        ],
+        [
+            'nome' => 'Raimundo do Queijo',
+            'endereco' => 'Rua do Centro 789',
+        ],
+    ];*/
+
+    $con = Conexao::open();
+
+    $query = "SELECT * FROM tb_restaurantes";
+
+    $resultado = mysqli_query($con, $query);
+
+    $result = mysqli_fetch_all($resultado);
+
+    /*echo "<pre>";
+    print_r($result);
+    echo "</pre>";*/
+
+    /*print_r($result[0]);
+    echo "<br>";
+    print_r($result[0][1]);*/
+?> 
+
+<table class="table table-striped table-hover mt-3">
+    <thead class="table-dark">
+        <tr>
+            <th>Nome</th>
+            <th>Endereço</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+            //foreach ($restaurantes as $cada) {
+            /*foreach ($result as $cada) {
+                echo "<tr>
+                    <td>{$cada['nome']}</td>
+                    <td>{$cada['endereco']}</td>
+                    <td>  </td>
+                </tr>";
+            }*/
+            for($i=0; $i<count($result); $i++){
+                echo "<tr>
+                    <td>{$result[$i][1]}</td>
+                    <td>{$result[$i][2]}</td>
+                    <td>  </td>
+                </tr>";
+            }
+        ?>
+    </tbody>
+</table>
